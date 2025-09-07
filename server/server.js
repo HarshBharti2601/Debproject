@@ -12,7 +12,10 @@ const app = express()
 
 
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+  origin: 'https://debproject-18i6.vercel.app/', // or '*', but for production use the actual frontend URL
+  credentials: true // if sending cookies/auth
+}))
 await connectDB()
 
 app.use('/api/user', userRouter)
